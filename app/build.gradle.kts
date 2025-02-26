@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.Kapt
 
 plugins {
     alias(libs.plugins.android.application)
