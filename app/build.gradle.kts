@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.material3)
     // view model lib
     implementation(libs.view.model)
+    implementation(libs.view.model.compose)
     //hilt libs
     implementation(libs.hilt.android.dep)
     kapt(libs.hilt.android.compile)

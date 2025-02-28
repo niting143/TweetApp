@@ -30,6 +30,7 @@ hilt-android-dep = { group = "com.google.dagger", name = "hilt-android", version
 hilt-android-compile = {group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-plugin-version"}
 ## view-Model libs
 view-model = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx",version.ref = "lifecycle_version"}
+view-model-compose = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose",version.ref = "lifecycle_version"}
 
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
