@@ -13,7 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tweet.api.TweetsApi
+import com.example.tweet.screens.CateggoryDetailsView
+import com.example.tweet.screens.CategoriesView
 import com.example.tweet.ui.theme.TweetTheme
+import com.example.tweet.viewmodels.CategoryDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,40 +24,12 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var tweetsApi: TweetsApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        GlobalScope.launch {
-           val response =  tweetsApi.getCategory()
-            Log.d("Nitin ka code",response.body()!!.distinct().toString())
-        }
         setContent {
-            TweetTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            //CategoriesView()
+            CateggoryDetailsView()
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TweetTheme {
-        Greeting("Android")
-    }
-}
