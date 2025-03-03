@@ -1,35 +1,71 @@
 package com.example.tweet
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.tweet.api.TweetsApi
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.tweet.screens.CateggoryDetailsView
 import com.example.tweet.screens.CategoriesView
 import com.example.tweet.ui.theme.TweetTheme
-import com.example.tweet.viewmodels.CategoryDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlinx.coroutines.yield
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //CategoriesView()
-            CateggoryDetailsView()
+            TweetTheme {
+                App()
+            }
         }
     }
+}
+
+
+@Composable
+fun App() {
+    var navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "main") {
+        composable(route = "main") {
+            ListViewCompose(
+                onclick = {
+                    navController.navigate("detail/${Uri.encode(it)}")
+                }
+            )
+        }
+        composable(route = "detail/{category}",
+            arguments = listOf(
+                navArgument("category") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            TweetViewCompose()
+        }
+    }
+}
+
+@Composable
+fun ListViewCompose(onclick: (category: String) -> Unit) {
+    CategoriesView(onclick)
+}
+
+@Composable
+fun TweetViewCompose() {
+    CateggoryDetailsView()
 }
 

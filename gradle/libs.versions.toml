@@ -13,6 +13,9 @@ hilt-plugin-version = "2.51.1"
 retrofit = "2.9.0"
 http = "4.11.0"
 gson = "2.10.1"
+nav_version = "2.8.8"
+hilt-navigation-compose	= "1.2.0"
+coroutinesVersion = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +34,13 @@ hilt-android-compile = {group = "com.google.dagger", name = "hilt-android-compil
 ## view-Model libs
 view-model = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx",version.ref = "lifecycle_version"}
 view-model-compose = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose",version.ref = "lifecycle_version"}
+
+coroutine-core = {group="org.jetbrains.kotlinx",  name = "kotlinx-coroutines-core", version.ref ="coroutinesVersion"}
+coroutine-android = {group="org.jetbrains.kotlinx",  name = "kotlinx-coroutines-android", version.ref ="coroutinesVersion"}
+
+##navigationgraph Dependency
+nav-graph = {group="androidx.navigation", name="navigation-compose", version.ref ="nav_version"}
+hilt-navigation-compose = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
 
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

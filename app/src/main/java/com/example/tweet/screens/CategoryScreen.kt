@@ -1,11 +1,10 @@
 package com.example.tweet.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -21,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -29,13 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tweet.R
 import com.example.tweet.viewmodels.CategoryViewModel
 
 @Composable
-fun CategoriesView() {
-    val categoryModel: CategoryViewModel = viewModel()
+fun CategoriesView(onclick: (category:String)->Unit) {
+    val categoryModel: CategoryViewModel = hiltViewModel()
     val category: State<List<String>> = categoryModel.categorystate.collectAsState()
     LazyVerticalGrid(
         verticalArrangement = Arrangement.SpaceAround,
@@ -45,15 +43,16 @@ fun CategoriesView() {
 
     ) {
         items(category.value.distinct() ) {
-            CategoryItemView(category = it)
+            CategoryItemView(category = it, onclick)
         }
     }
 }
 
+
 @Composable
-fun CategoryItemView(category:String) {
+fun CategoryItemView(category:String,onclick: (category: String) -> Unit) {
     val painsrc = painterResource(R.drawable.waves_bg)
-    Box(Modifier.padding(10.dp,20.dp).
+    Box(Modifier.padding(10.dp,20.dp).clickable { onclick(category) }.
     size(160.dp).clip(RoundedCornerShape(8.dp)).border(1.dp, Color(0XFFEEEEEE)).paint(painter = painsrc, contentScale = ContentScale.Crop),
         contentAlignment = Alignment.BottomCenter) {
         Text(text = category,

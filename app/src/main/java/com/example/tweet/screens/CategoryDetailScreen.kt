@@ -1,6 +1,5 @@
 package com.example.tweet.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +16,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tweet.R
 import com.example.tweet.models.Tweet
 import com.example.tweet.viewmodels.CategoryDetailViewModel
@@ -25,7 +24,7 @@ import com.example.tweet.viewmodels.CategoryDetailViewModel
 
 @Composable
 fun CateggoryDetailsView(){
-    val tweets: CategoryDetailViewModel = viewModel()
+    val tweets: CategoryDetailViewModel = hiltViewModel()
     val tweetsStaet: State<List<Tweet>> = tweets.categoryDetail.collectAsState()
 
     LazyColumn (content = {

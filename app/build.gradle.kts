@@ -59,6 +59,13 @@ dependencies {
     implementation(libs.hilt.android.dep)
     kapt(libs.hilt.android.compile)
 
+    implementation(libs.coroutine.core)
+    implementation(libs.coroutine.android)
+
+    //nav graph
+    implementation(libs.nav.graph)
+    implementation(libs.hilt.navigation.compose)
+
     // Retrofit libs
     implementation(libs.retrofit)
     implementation(libs.retrofit.json)
